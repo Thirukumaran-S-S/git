@@ -4,8 +4,8 @@
   "workspaceId": "625d0bf0a162fb2205cebc28",
   "version": 1,
   "createdBy": "625d0c01a162fb2205cebc36",
-  "lastUpdateBy": "625d0c01a162fb2205cebc36",
-  "lastUpdatedOn": "2022-04-18T06:59:14.366Z",
+  "lastUpdateBy": "625d0bf0a162fb2205cebc25",
+  "lastUpdatedOn": "2022-04-25T09:11:20.116Z",
   "definition": {
     "protocol": "none",
     "clientId": "",
@@ -19,7 +19,7 @@
         "Init": {
           "name": "Init",
           "isEnabled": true,
-          "sender": "{\n  /*\n  CHANGELOG\n\n  10-02-22\n  - commented out getCodes in checkCodes function. \n  - added triggerGetCodes to lockFunctions to enable manual trigger. \n\n  08-02-2022 | 11:45\n\n  - enabled REST operations in the code\n  - wrapped setCodeRes in try..catch\n   */\n  console.log(\"SEQINFO: In Init state\");\n  console.log(\"ClientId : \", client());\n\n  state._$timestamp = new Date();\n  state.mailboxCleared = false;\n  \n  let config = glob.get(\"config\");\n  state._$iterationConfig = config?.iterationConfig?.lock || [];\n  state.SPEED_CONSTANT = config?.iterationConfig?.SPEED_CONSTANT;\n\n  state._$nextExecution = {};\n\n  state._$iterationConfig.forEach((obj) => {\n    obj.interval /= state.SPEED_CONSTANT;\n    state._$nextExecution[obj.fun] = Date.now() + obj.interval;\n  });\n\n  state.localManualTriggerCount = 0\n\n  if (client() === 0) {\n    let manualTrigger = {\n      fun: \"\",\n      count: 0,\n      spread: 1,\n    };\n    await glob.set(\"Locks_manualTrigger\", manualTrigger);\n    await glob.set(\"Locks_manualTriggerCount\", 0);\n\n  }\n\n  //state.locks = await glob.get(\"G\" + client() + \"_Locks\") || { };\n  // This object will be initialized later in online state.\n  state.locks = {};\n  state.getCodeRetryCount = 0;\n\n\n  next(\"Helpers\");\n}\n",
+          "sender": "{\n  /*\n  CHANGELOG\n\n  10-02-22\n  - commented out getCodes in checkCodes function. \n  - added triggerGetCodes to lockFunctions to enable manual trigger. \n\n  08-02-2022 | 11:45\n\n  - enabled REST operations in the code\n  - wrapped setCodeRes in try..catch\n   */\n  console.log(\"SEQINFO: In Init state\");\n  console.log(\"ClientId : \", client());\n\n  state._$timestamp = new Date();\n  state.mailboxCleared = false;\n  \n  let config = glob.get(\"config\");\n  state._$iterationConfig = config?.iterationConfig?.lock || [];\n  state.SPEED_CONSTANT = config?.iterationConfig?.SPEED_CONSTANT;\n\n  state._$nextExecution = {};\n\n  state._$iterationConfig.forEach((obj) => {\n    obj.interval /= state.SPEED_CONSTANT;\n    state._$nextExecution[obj.fun] = Date.now() + obj.interval;\n  });\n\n  state.localManualTriggerCount = 0\n\n  if (client() === 0) {\n    let manualTrigger = {\n      fun: \"\",\n      count: 0,\n      spread: 1,\n    };\n    await glob.set(\"Locks_manualTrigger\", manualTrigger);\n    await glob.set(\"Locks_manualTriggerCount\", 0);\n\n  }\n\n  //For testing purpose\n  //state.locks = await glob.get(\"G\" + client() + \"_Locks\") || { };\n  // This object will be initialized later in online state.\n  state.locks = {};\n  state.getCodeRetryCount = 0;\n\n\n  next(\"Helpers\");\n}\n",
           "receiver": "\n{\n  //Please provide your logic here. \n  \n  //The device model state could be transitioned by calling next()\n  //To transition to a specific state pass state name as argument e.g. \n  //next('Running');\n  \n}\n",
           "icon": "",
           "index": 0
@@ -58,6 +58,13 @@
       "timestamp": "2022-04-18T06:59:14.366Z",
       "description": {
         "action": "Create"
+      }
+    },
+    {
+      "userId": "625d0bf0a162fb2205cebc25",
+      "timestamp": "2022-04-25T09:11:20.116Z",
+      "description": {
+        "action": "update"
       }
     }
   ]
