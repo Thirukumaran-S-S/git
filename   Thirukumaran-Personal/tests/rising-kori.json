@@ -5,7 +5,7 @@
   "version": 1,
   "createdBy": "625d0c01a162fb2205cebc36",
   "lastUpdateBy": "625d0c01a162fb2205cebc36",
-  "lastUpdatedOn": "2022-04-25T09:50:39.961Z",
+  "lastUpdatedOn": "2022-04-25T09:56:31.810Z",
   "definition": {
     "protocol": "mqtt",
     "clientId": "",
@@ -73,7 +73,7 @@
           "index": 2,
           "name": "Booting",
           "isEnabled": true,
-          "sender": "{\n  if (iteration() > 2 && state.disconnected == false) {\n    protocol.forceDisconnect();\n    console.log(\"SEQINFO: Disconnected from MQTT topics\");\n    state.disconnected = true;\n  }\n\n  state._$timestamp = new Date();\n  await glob.set(\"gateway_\" + client() + \"_active\", false);\n\n  //if (--state.BootIterationsLeft <= 0) {   // TBD check with Robin about the logic here\n  if (--state.BootIterationsLeft <= 0) {\n    console.log(\"SEQINFO: Done Booting\");\n    if (iteration() > 2) {\n      console.log(\"SEQINFO: Reconnecting to MQTT topics\");\n      protocol.forceConnect();\n      state.disconnected = false;\n    }\n\n    try {\n      metric.add('Gateway_heartBeat')\n      await state._$helpers.publish(JSON.stringify(await state.hubFunctions.heartBeat()));\n      await delay(2000);\n      // await state._$helpers.publish(JSON.stringify(await state.hubFunctions.addLock()));\n      // await delay(2000)\n      await state._$helpers.publish(JSON.stringify(await state.hubFunctions.sendFWver()));\n      await delay(2000)\n      \n      await state._$helpers.publish(JSON.stringify(await state.hubFunctions.BLEscan()));\n      await delay(2000)\n\n      // await state._$helpers.publish(JSON.stringify(await state.hubFunctions.sendICCID()));\n      // await delay(2000)\n\n      // await state._$helpers.publish(JSON.stringify(await state.hubFunctions.sendBoardType()));\n      // await delay(2000)\n\n      \n\n      await state._$helpers.publish(JSON.stringify(await state.hubFunctions.sendBLEmode()));\n      await delay(2000)\n    } catch (e) {\n      console.log(e);\n    }\n    \n    state._$nextExecution.switchCentral = Date.now() + 180000;\n    glob.set(\"gateway_\" + client() + \"_active\", true);\n    metric.add('Gateway_bootingStateComplete', 1)\n    next(\"Online\");\n  }\n  metric.add('Gateway_bootingState', 1)\n  console.log(\"SEQINFO: In Booting State\");\n}\n",
+          "sender": "{\n  if (iteration() > 2 && state.disconnected == false) {\n    protocol.forceDisconnect();\n    console.log(\"SEQINFO: Disconnected from MQTT topics\");\n    state.disconnected = true;\n  }\n\n  state._$timestamp = new Date();\n  await glob.set(\"gateway_\" + client() + \"_active\", false);\n\n  //if (--state.BootIterationsLeft <= 0) {   // TBD check with Robin about the logic here\n  if (--state.BootIterationsLeft <= 0) {\n    console.log(\"SEQINFO: Done Booting\");\n    if (iteration() > 2) {\n      console.log(\"SEQINFO: Reconnecting to MQTT topics\");\n      protocol.forceConnect();\n      state.disconnected = false;\n    }\n\n    try {\n      metric.add('Gateway_heartBeat')\n      await state._$helpers.publish(JSON.stringify(await state.hubFunctions.heartBeat()));\n      await delay(2000);\n      await state._$helpers.publish(JSON.stringify(await state.hubFunctions.switchPeripheral ()));\n      \n       await delay(2000)\n      await state._$helpers.publish(JSON.stringify(await state.hubFunctions.sendFWver()));\n      await delay(2000)\n      \n      await state._$helpers.publish(JSON.stringify(await state.hubFunctions.BLEscan()));\n      await delay(2000)\n\n      // await state._$helpers.publish(JSON.stringify(await state.hubFunctions.sendICCID()));\n      // await delay(2000)\n\n      // await state._$helpers.publish(JSON.stringify(await state.hubFunctions.sendBoardType()));\n      // await delay(2000)\n\n      \n\n      await state._$helpers.publish(JSON.stringify(await state.hubFunctions.sendBLEmode()));\n      await delay(2000)\n    } catch (e) {\n      console.log(e);\n    }\n    \n    state._$nextExecution.switchCentral = Date.now() + 180000;\n    glob.set(\"gateway_\" + client() + \"_active\", true);\n    metric.add('Gateway_bootingStateComplete', 1)\n    next(\"Online\");\n  }\n  metric.add('Gateway_bootingState', 1)\n  console.log(\"SEQINFO: In Booting State\");\n}\n",
           "receiver": "\n{\n  //Please provide your logic here. \n  \n  //The device model state could be transitioned by calling next()\n  //To transition to a specific state pass state name as argument e.g. \n  //next('Running');\n  \n}\n"
         },
         "Clearing_Unsent": {
@@ -195,6 +195,13 @@
     {
       "userId": "625d0c01a162fb2205cebc36",
       "timestamp": "2022-04-25T09:50:39.961Z",
+      "description": {
+        "action": "update"
+      }
+    },
+    {
+      "userId": "625d0c01a162fb2205cebc36",
+      "timestamp": "2022-04-25T09:56:31.810Z",
       "description": {
         "action": "update"
       }
