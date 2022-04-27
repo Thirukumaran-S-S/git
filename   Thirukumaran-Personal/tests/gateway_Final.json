@@ -7,7 +7,7 @@
   "version": 1,
   "createdBy": "625d3968a162fb2205cebcea",
   "lastUpdateBy": "625d0c01a162fb2205cebc36",
-  "lastUpdatedOn": "2022-04-27T08:44:25.759Z",
+  "lastUpdatedOn": "2022-04-27T09:25:49.257Z",
   "definition": {
     "protocol": "mqtt",
     "clientId": "",
@@ -206,6 +206,13 @@
     {
       "userId": "625d0c01a162fb2205cebc36",
       "timestamp": "2022-04-27T08:44:25.759Z",
+      "description": {
+        "action": "update"
+      }
+    },
+    {
+      "userId": "625d0c01a162fb2205cebc36",
+      "timestamp": "2022-04-27T09:25:49.257Z",
       "description": {
         "action": "update"
       }
