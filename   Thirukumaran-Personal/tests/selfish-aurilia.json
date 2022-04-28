@@ -25,7 +25,7 @@
         "Init": {
           "name": "Init",
           "isEnabled": true,
-          "sender": "{\n  var arr = [];\n  var id;\n  console.log(client());\n  for (i = 0; i < 10000; i++)\n  {\n    id = glob.get(\"gateway_\" + i);\n    var hub = id.thingName;\n    arr.push(hub);\n\n  }\n  glob.set(\"hubsList\", arr);\n  console.log(arr);\n}\n// {\n//   var arr = [];\n//   var id;\n//   console.log(client());\n//   for (i = 0; i < 10000; i++) {\n//     id = glob.get(\"G\" + i +\"_ActiveThermostats\");\n//     var devicething = Object.keys(id)[0]\n//     arr.push(devicething);\n\n//   }\n//   glob.set(\"deviceList\", arr);\n//   console.log(arr);\n// }",
+          "sender": "// {\n//   var arr = [];\n//   var id;\n//   console.log(client());\n//   for (i = 0; i < 10000; i++)\n//   {\n//     id = glob.get(\"gateway_\" + i);\n//     var hub = id.thingName;\n//     arr.push(hub);\n\n//   }\n//   glob.set(\"hubsList\", arr);\n//   console.log(arr);\n// }\n{\n  var arr = [];\n  var id;\n  console.log(client());\n  for (i = 0; i < 10000; i++) {\n    id = glob.get(\"G\" + i +\"_ActiveThermostats\");\n    var devicething = Object.keys(id)[0]\n    arr.push(devicething);\n\n  }\n  glob.set(\"deviceList\", arr);\n  console.log(arr);\n}",
           "receiver": "\n{\n  //Please provide your logic here. \n  \n  //The device model state could be transitioned by calling next()\n  //To transition to a specific state pass state name as argument e.g. \n  //next('Running');\n  \n}\n",
           "icon": "",
           "index": 0
