@@ -1,0 +1,77 @@
+{
+  "id": "626149dca162fb2205cebfb4",
+  "name": "selfish-aurilia",
+  "workspaceId": "625d0bf0a162fb2205cebc28",
+  "version": 1,
+  "createdBy": "625d0c01a162fb2205cebc36",
+  "lastUpdateBy": "625d0c01a162fb2205cebc36",
+  "lastUpdatedOn": "2022-04-21T12:31:25.159Z",
+  "definition": {
+    "protocol": "http",
+    "clientId": "",
+    "additionalPackages": {},
+    "strategy": "Default",
+    "settings": {
+      "method": "GET",
+      "url": "http://httpbin.org/get",
+      "timeout": 10000,
+      "headers": {
+        "accept": "application/json"
+      }
+    },
+    "model": {
+      "currentState": "Init",
+      "stateMap": {
+        "Init": {
+          "name": "Init",
+          "isEnabled": true,
+          "sender": "// {\n//   var arr = [];\n//   var id;\n//   console.log(client());\n//   for (i = 0; i < 10000; i++)\n//   {\n//     id = glob.get(\"gateway_\" + i);\n//     var hub = id.thingName;\n//     arr.push(hub);\n\n//   }\n//   glob.set(\"hubsList\", arr);\n//   console.log(arr);\n// }\n{\n  var arr = [];\n  var id;\n  console.log(client());\n  for (i = 0; i < 10000; i++) {\n    id = glob.get(\"G\" + i +\"_ActiveThermostats\");\n    var devicething = Object.keys(id)[0]\n    arr.push(devicething);\n\n  }\n  glob.set(\"deviceList\", arr);\n  console.log(arr);\n}",
+          "receiver": "\n{\n  //Please provide your logic here. \n  \n  //The device model state could be transitioned by calling next()\n  //To transition to a specific state pass state name as argument e.g. \n  //next('Running');\n  \n}\n",
+          "icon": "",
+          "index": 0
+        },
+        "Running": {
+          "name": "Running",
+          "isEnabled": true,
+          "sender": "\n{\n  //Please provide your logic here. \n  \n  //The device model state could be transitioned by calling next()\n  //To transition to a specific state pass state name as argument e.g. \n  //next('Running');\n  \n}\n",
+          "receiver": "\n{\n  //Please provide your logic here. \n  \n  //The device model state could be transitioned by calling next()\n  //To transition to a specific state pass state name as argument e.g. \n  //next('Running');\n  \n}\n",
+          "icon": "",
+          "index": 1
+        },
+        "Finished": {
+          "name": "Finished",
+          "isEnabled": true,
+          "sender": "\n{\n  //Please provide your logic here. \n  \n  //The device model state could be transitioned by calling next()\n  //To transition to a specific state pass state name as argument e.g. \n  //next('Running');\n  \n}\n",
+          "receiver": "\n{\n  //Please provide your logic here. \n  \n  //The device model state could be transitioned by calling next()\n  //To transition to a specific state pass state name as argument e.g. \n  //next('Running');\n  \n}\n",
+          "icon": "",
+          "index": 2
+        }
+      },
+      "setup": "",
+      "teardown": ""
+    }
+  },
+  "history": [
+    {
+      "userId": "625d0c01a162fb2205cebc36",
+      "timestamp": "2022-04-21T12:11:08.299Z",
+      "description": {
+        "action": "Create"
+      }
+    },
+    {
+      "userId": "625d0c01a162fb2205cebc36",
+      "timestamp": "2022-04-21T12:31:07.350Z",
+      "description": {
+        "action": "update"
+      }
+    },
+    {
+      "userId": "625d0c01a162fb2205cebc36",
+      "timestamp": "2022-04-21T12:31:25.159Z",
+      "description": {
+        "action": "update"
+      }
+    }
+  ]
+}
